@@ -1,0 +1,11 @@
+.card {
+    width: 18rem;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 50px;
+    align-content: flex-start;
+}

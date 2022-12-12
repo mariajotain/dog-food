@@ -1,0 +1,10 @@
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px calc(50% - 500px);
+    box-shadow: 0px 0px 3px 0px gray;
+    background: rgb(254, 228, 77);
+    flex-shrink: 0;
+  }
+  
