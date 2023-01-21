@@ -1,26 +1,44 @@
 
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+// import { useEffect, useState } from "react";
 import styles from "./Home.module.css";
 
+export const PRODUCTS_QUERY_KEY = 'PRODUCTS_QUERY_KEY';
+
+
 export const Home = ({token}) => {
+  const userToken = JSON.parse(localStorage.getItem('token'));
 
 
-const [state, setState] = useState([]);
-const tokenString = localStorage.getItem('token');
-const userToken = JSON.parse(tokenString);
-useEffect(() => {
-  fetch(`https://api.react-learning.ru/products`,{
-    headers: {
-      authorization: `Bearer ${userToken}`,
-    }
-})
-  .then(response=>response.json())
-  .then(response=>setState(response.products));
-}, []);
+  const getProductsData = () => {
+    return fetch(`https://api.react-learning.ru/products`,{
+         headers: {
+           authorization: `Bearer ${userToken}`,
+         }
+     }).then((response) => response.json());
+
+ };
+//  .then((response)=> response.products)
+ const { isLoading, error, data, isSuccess } = useQuery({ 
+  queryKey: [PRODUCTS_QUERY_KEY], 
+  queryFn: getProductsData,
+  });
+
+// const [state, setState] = useState([]);
+// useEffect(() => {
+//   fetch(`https://api.react-learning.ru/products`,{
+//     headers: {
+//       authorization: `Bearer ${userToken}`,
+//     }
+// })
+//   .then(response=>response.json())
+//   .then(response=>setState(response.products));
+// }, []);
 
   return (
     <div className={styles.container}>
-        {state.map(item => 
+         {isSuccess &&
+        data.products.map((item) => 
         <>
         <div className="card-product d-flex ">
           <div className={styles.card}>
@@ -39,6 +57,8 @@ useEffect(() => {
         </div>
         </>
         )}
+        {isLoading && <p>Loading..</p>}
+      {error && <p>Error occurred!</p>}
     </div>
   );
 

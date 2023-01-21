@@ -6,15 +6,22 @@ import { Outlet } from "react-router-dom";
 import { useState } from 'react';
 import { SignIn } from './components/SignIn/SignIn';
 import { Home } from './components/Home/Home';
+// import { Login } from './components/Login/Login';
 
 
 function App() {
   const [token, setToken] = useState("");
-  if(!token) {
-        return <SignIn  setToken={setToken} />;
-      } 
 
- 
+  if(!JSON.parse(localStorage.getItem('token'))) {
+  // setToken(JSON.parse(localStorage.getItem('token')));
+
+
+  // if(!token) 
+        return  <SignIn setToken={setToken} />
+        // return <Login setToken={setToken} />
+      };
+
+     
   return (
      <div className="App">
        <Header token={token} />
@@ -25,7 +32,6 @@ function App() {
         <Footer />
         </div>
   );
+      
 }
 export default App;
-
-    //    

@@ -1,22 +1,14 @@
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from "react";
 
 export function UserBtn({token}) {
   const navigate = useNavigate();
-  const [state, setState] = useState([]);
-
-  useEffect(() => {
-    fetch(`https://api.react-learning.ru/v2/sm8/users/me`,{
-      headers: {
-        authorization: `Bearer ${token}`,
-      }
-  })
-    .then((response) => response.json())
-    .then((response) => setState(response));
-  }, []);
-
+  const userToken = JSON.parse(localStorage.getItem('token'));
+ 
   const clickHandler = () => {
-    navigate(`/user`);
+    if (userToken) {
+      navigate(`/user`);
+    }
+    
   };
 
   return (
@@ -25,3 +17,16 @@ export function UserBtn({token}) {
     </div>
   )
 }
+
+// import { useEffect, useState } from "react";
+ // const [state, setState] = useState([]);
+
+  // useEffect(() => {
+  //   fetch(`https://api.react-learning.ru/v2/sm8/users/me`,{
+  //     headers: {
+  //       authorization: `Bearer ${token}`,
+  //     }
+  // })
+  //   .then((response) => response.json())
+  //   .then((response) => setState(response));
+  // }, []);

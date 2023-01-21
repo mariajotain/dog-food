@@ -5,8 +5,11 @@ export function SignUpBtn() {
 const navigate = useNavigate();
 
 const clickHandler = () => {
-    //     // redirect на страницу с регистрацией
+  if(JSON.parse(localStorage.getItem('token'))) {
+    localStorage.removeItem('token'); 
+    localStorage.clear();
     navigate(`/signup`);
+  } 
 };
 
 return (
