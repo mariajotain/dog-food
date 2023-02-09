@@ -1,15 +1,12 @@
 import styles from "./footer.module.css";
-
+import { NavLink } from 'react-router-dom';
 const Footer = () => {
 
     return (
-        <footer>
-        <div className={styles.logo}>
-            {/* <a href="#" >
-                <i className="fa-solid fa-dog"></i>
-            </a> */}
-            <span>DogFood</span>
-        </div>
+        <footer  className=" text-center text-white">
+            <div className={styles.logo}>
+            <NavLink to="/" >DogFood</NavLink>
+            </div>
       
     </footer>
     )
@@ -18,3 +15,4 @@ const Footer = () => {
 export {
     Footer
 }
+

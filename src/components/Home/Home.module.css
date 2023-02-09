@@ -9,3 +9,9 @@
     gap: 50px;
     align-content: flex-start;
 }
+.hidden {
+    display: none;
+}
+body {
+    background-color:#f6f6f6 ; 
+}

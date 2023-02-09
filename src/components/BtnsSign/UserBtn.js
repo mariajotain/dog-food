@@ -1,8 +1,10 @@
 import { useNavigate } from 'react-router-dom';
+import { getInitialState } from '../../redux/initState';
 
-export function UserBtn({token}) {
+export function UserBtn() {
   const navigate = useNavigate();
-  const userToken = JSON.parse(localStorage.getItem('token'));
+  const userToken = getInitialState().tokenUser;
+  // const userToken = JSON.parse(localStorage.getItem('token'));
  
   const clickHandler = () => {
     if (userToken) {
@@ -13,7 +15,7 @@ export function UserBtn({token}) {
 
   return (
     <div className="ms-2">
-      <button onClick={clickHandler} type="button" className="btn btn-dark btn-sm">My Page</button>
+      <button onClick={clickHandler} type="button" className="btn btn-light btn-sm">My Page</button>
     </div>
   )
 }
